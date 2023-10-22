@@ -1,19 +1,15 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
-app.config["TEMPLATE_FOLDER"] = "templates"
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/confirmar", methods=["POST"])
-def confirmar():
-    # Obtener el valor del cuadro de texto
-    valor = request.form["valor"]
+@app.route('/procesar_numero', methods=['POST'])
+def procesar_numero():
+    numero = request.form['numero']
+    return render_template('resultado.html', numero=numero)
 
-    # Mostrar el valor en la pantalla
-    return render_template("confirmar.html", valor=valor)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
