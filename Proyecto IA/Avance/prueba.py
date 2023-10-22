@@ -28,3 +28,11 @@ respuestaEn = translator.translate(respuestaEs, src="es", dest="en")
 print("Historia en inglés\n")
 print(respuestaEn.text+"\n")
 
+response = openai.Image.create(
+  prompt=historia,
+  n=1,
+  size="1024x1024"
+)
+image_url = response['data'][0]['url']
+
+print(image_url)
